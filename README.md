@@ -142,6 +142,7 @@ docs/                architecture, deployment, data provenance
 
 ## Documentation
 
+* [docs/pxEnrich_BenchmarkCurationAssignment.md](docs/pxEnrich_BenchmarkCurationAssignment.md) - check assignment and other details here.
 * [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) — components, data flow, design decisions
 * [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) — deploying the demo + MCP endpoint
 * [docs/DATA_PROVENANCE.md](docs/DATA_PROVENANCE.md) — sources, logging, security posture
