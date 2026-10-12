@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+*.docx
+*.zip
+data/pxenrich.db
+data/*.db
+.env
+.venv/
+*.log

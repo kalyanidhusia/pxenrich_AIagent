@@ -1,0 +1,11 @@
+# Core (stdlib covers models/extraction/db/search/answer)
+flask>=3.0
+requests>=2.31
+mcp>=1.2          # MCP SDK; code is compatible with both 1.x (FastMCP) and 2.x (MCPServer)
+
+# Development / testing
+pytest>=8.0        # tests also run under plain `python -m unittest`
+
+# Optional LLM layer uses stdlib urllib — no SDK required.
+# Optional production server:
+# gunicorn>=22.0

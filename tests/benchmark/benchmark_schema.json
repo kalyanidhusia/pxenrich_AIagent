@@ -1,0 +1,19 @@
+{
+  "description": "Schema for pxEnrich extraction benchmark records. The team's 18-record expert-reference benchmark drops into benchmark_records.jsonl in this format; example_records.jsonl shows the shape with examples derived from seed data (NOT the expert benchmark).",
+  "record_format": {
+    "accession": "ProteomeXchange accession the expectation applies to",
+    "field": "one of: er_status | pr_status | her2_status | subtype | sample_type | organism_context | disease_context | treatment_context",
+    "expected_status": "asserted | unknown | mixed | conflicting | abstained | not_evaluable",
+    "expected_value": "expected value when status is asserted/mixed; null otherwise",
+    "value_match": "exact | contains  (how expected_value is compared; default contains)",
+    "rationale": "curator's note on why this is the correct answer",
+    "set": "regression | holdout  (holdout records are EXCLUDED from development runs and only scored at final evaluation — freeze them before tuning rules)"
+  },
+  "metrics": {
+    "accuracy": "fraction of records where status and (when applicable) value match",
+    "false_assertion_rate": "expected non-asserted (unknown/abstained/conflicting/mixed) but system asserted a value — the most serious error class",
+    "missed_value_rate": "expected asserted but system returned unknown/abstained",
+    "correct_abstention_rate": "of records where abstention was expected, fraction where the system abstained",
+    "scope_error_rate": "status matched but value or scope wrong (e.g. study_focus treated as cohort status)"
+  }
+}

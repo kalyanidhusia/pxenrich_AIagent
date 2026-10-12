@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>pxEnrich — Cancer research evidence, in plain language</title>
+<meta name="description" content="Ask ordinary-language questions about breast-cancer research and get answers grounded in public proteomics datasets, with every claim linked to its source.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="/">pxEnrich</a>
+    <p class="brand-sub">Breast-cancer research evidence, traced to its sources</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero" id="hero">
+    <h1>What has actually been studied?</h1>
+    <p class="hero-lede">
+      Ask a question in your own words. Answers come from public proteomics
+      datasets and their records — every claim keeps its source, and
+      “we don’t know” is a real answer here.
+    </p>
+
+    <form id="search-form" class="search-form" role="search">
+      <label class="visually-hidden" for="q">Your question</label>
+      <input id="q" name="q" type="text" autocomplete="off"
+             placeholder="Has HER2-low breast cancer been studied using proteomics?">
+      <button type="submit">Search the evidence</button>
+    </form>
+
+    <div class="prompts" id="prompts">
+      <p class="prompts-label">Questions people ask:</p>
+      <ul>
+        <li><button class="prompt">What does triple-negative breast cancer mean, and what protein-level research has been done in humans?</button></li>
+        <li><button class="prompt">What types of samples have researchers used: tumor tissue, blood, plasma, or cell lines?</button></li>
+        <li><button class="prompt">Which studies are patient-derived and which are cell-line or animal studies?</button></li>
+        <li><button class="prompt">What public datasets exist for proteomics before and after treatment?</button></li>
+      </ul>
+    </div>
+
+    <nav class="topics" id="topics" aria-label="Browse by topic">
+      <p class="prompts-label">Or browse a topic:</p>
+      <div class="topic-chips" id="topic-chips"></div>
+    </nav>
+  </section>
+
+  <section class="results" id="results" hidden>
+    <div class="answer-head">
+      <h2 id="answer-title">Answer</h2>
+      <div class="audience" role="group" aria-label="Explanation level">
+        <button data-aud="plain" class="aud-btn active">Plain language</button>
+        <button data-aud="clinician" class="aud-btn">Clinician</button>
+        <button data-aud="researcher" class="aud-btn">Researcher</button>
+      </div>
+    </div>
+    <div class="answer-card" id="answer-card"></div>
+    <div id="cards"></div>
+  </section>
+
+  <section class="about">
+    <h2>How this works</h2>
+    <div class="how">
+      <div class="how-item">
+        <h3>Public data only</h3>
+        <p>Every study here is a public dataset from the ProteomeXchange
+        network of repositories (PRIDE, MassIVE, iProX, jPOST), with links back
+        to the original records and publications.</p>
+      </div>
+      <div class="how-item">
+        <h3>Labels carry receipts</h3>
+        <p>When a study is labeled “triple-negative” or “patient-derived,”
+        you can open the label and read the exact text it came from, where
+        that text lives, and how confident the system is.</p>
+      </div>
+      <div class="how-item">
+        <h3>Honest uncertainty</h3>
+        <p>Unknown, mixed, conflicting, and “deliberately not labeled” are
+        real answers. A confident claim without a source is treated as a
+        defect, not a feature.</p>
+      </div>
+    </div>
+    <p class="clinical-note" id="clinical-note">
+      pxEnrich explains research evidence. It does not diagnose disease,
+      recommend treatment, or interpret personal medical records. For medical
+      decisions, please talk with a clinician.
+    </p>
+  </section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <p>pxEnrich · built on public data from
+      <a href="https://www.proteomexchange.org/" rel="noopener">ProteomeXchange</a>,
+      <a href="https://www.ebi.ac.uk/pride/" rel="noopener">PRIDE</a>, and
+      <a href="https://massive.ucsd.edu/" rel="noopener">MassIVE</a>.
+      Open source · research use.</p>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
