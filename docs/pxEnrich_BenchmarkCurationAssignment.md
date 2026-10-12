@@ -136,11 +136,11 @@ This assignment sits in the **data foundation** milestone (Oct 19 – Nov 1) of 
 
 | Date | What is due |
 | --- | --- |
-| Mon Oct 19 | Accession assignments distributed; kickoff walkthrough of one record together |
-| Fri Oct 23 | Checkpoint: first 2 accessions (12 records) submitted for early feedback — ungraded |
-| Wed Oct 28 | All three files due (pull request to the team repo, `tests/benchmark/submissions/`) |
-| Fri Oct 30 | Adjudication meetings done; final labels merged |
-| Sun Nov 1 | Holdout frozen; class benchmark tagged in the repo |
+| Mon Oct 26 | Accession assignments distributed; kickoff walkthrough of one record together |
+| Fri Nov 02 | Checkpoint: first 2 accessions (12 records) submitted for early feedback — ungraded |
+| Wed Nov 09 | All three files due (pull request to the team repo, `tests/benchmark/submissions/`) |
+| Fri Nov 16 | Adjudication meetings done; final labels merged |
+| Sun Nov 30 | Holdout frozen; class benchmark tagged in the repo |
 
 **AI-use policy.** You may use an AI assistant to understand terminology (what RIME is, what an SDRF file contains) and to check JSON syntax. You may **not** have an AI produce the labels or rationales: the entire value of this benchmark is that it is *human* ground truth — an AI-labeled benchmark scoring an AI extractor is circular and scientifically worthless. Every rationale must be writable from quotes you located yourself; I will spot-check by asking you to walk me through records live. Declare any AI use in your curation log.
 
