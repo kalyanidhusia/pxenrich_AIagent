@@ -1,0 +1,60 @@
+name: Benchmark submissions
+
+on:
+  pull_request:
+    paths:
+      - "submissions/**/*.jsonl"
+
+jobs:
+  score:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Find changed submission files
+        id: changed
+        run: |
+          git fetch origin ${{ github.base_ref }} --depth=1
+          FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD -- 'submissions/**/*.jsonl' | tr '\n' ' ')
+          echo "files=$FILES" >> "$GITHUB_OUTPUT"
+          echo "Changed submission files: $FILES"
+
+      - name: Validate JSON and required fields (hard gate)
+        run: |
+          python - <<'EOF'
+          import json, os, sys
+          files = "${{ steps.changed.outputs.files }}".split()
+          schema = json.load(open("tests/benchmark/benchmark_schema.json"))
+          required = schema.get("required", [])
+          bad = 0
+          for p in files:
+              for i, line in enumerate(open(p, encoding="utf-8"), 1):
+                  line = line.strip()
+                  if not line:
+                      continue
+                  try:
+                      rec = json.loads(line)
+                  except json.JSONDecodeError as e:
+                      print(f"::error file={p},line={i}::invalid JSON: {e}")
+                      bad += 1
+                      continue
+                  missing = [k for k in required if k not in rec]
+                  if missing:
+                      print(f"::error file={p},line={i}::missing fields: {missing}")
+                      bad += 1
+          sys.exit(1 if bad else 0)
+          EOF
+
+      - name: Run benchmark harness (score report — disagreements are findings, not failures)
+        continue-on-error: true
+        run: |
+          for f in ${{ steps.changed.outputs.files }}; do
+            echo "=== $f ==="
+            python tests/run_benchmark.py "$f" | tee -a "$GITHUB_STEP_SUMMARY"
+          done
