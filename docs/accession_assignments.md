@@ -1,7 +1,9 @@
-# pxEnrich Benchmark Curation — Accession Assignments (v1, 2026-11-13)
+# pxEnrich Benchmark Curation — Accession Assignments (v2, 2026-11-17)
+
+**v2 adds Colson Sipe. All v1 assignments are unchanged** — v2 extends the same deterministic selection (seed 20261113), so nobody who has started labeling is affected.
 
 Each student labels **10 accessions**: 2 shared **calibration** accessions (everyone labels these; they measure inter-annotator agreement) + 8 **unique** accessions.
-Selection: deterministic (random seed 20261113) from the 101-record seed corpus, excluding the 10 accessions already labeled in `tests/benchmark/example_records.jsonl` (their answers are public in the repo).
+Selection excludes the 10 accessions already labeled in `tests/benchmark/example_records.jsonl` (their answers are public in the repo).
 
 **Calibration (all students):** PXD046327, PXD037256
 
@@ -77,5 +79,17 @@ Selection: deterministic (random seed 20261113) from the 101-record seed corpus,
 - PXD066377 — Auranofin improves chemotherapeutic response of breast tumor by targeting TOPBP1-nucleated prot
 - PXD073739 — Targeting RANKL-Independent Osteoclastogenesis Overcomes Denosumab Resistance in ER+ Breast Can
 
+## Colson Sipe (csipe4@harding.edu)
+- PXD046327 *(calibration)* — Deciphering the role of CDK4 in regulating metabolism and cell fate of triple-negative breast c
+- PXD037256 *(calibration)* — Proteomic analysis of H460 and MCF7 cell lines grown in 2D and 3D culture conditions
+- PXD047189 — Retinoic acid-induced 2 protein contributes to proficient homologous recombination and maintain
+- PXD053158 — In vivo proteomic labeling reveals diverse proteomes for therapeutic targets
+- PXD053787 — T Lymphocytes induce the expression of Coronin-1A in breast cancer cells enabling the transmigr
+- PXD059147 — Molecular characterization of perineural invasion-competent cancer cells using a novel in vitro
+- PXD060684 — Abemaciclib differentially reshapes the immunopeptidome of breast cancer subtypes
+- PXD062859 — InstaNovo-P T47D cell phosphoproteomics
+- PXD067936 — GYLATL1 promotes endocrine therapy resistance in luminal A-like breast cancer and is regulated 
+- PXD069792 — Clone-by-Clone Therapy Guidance in Luminal Breast Cancer via Spatial Proteomics and Patient-Der
+
 ---
-Submit per the Benchmark Curation Assignment: JSONL records matching `tests/benchmark/benchmark_schema.json`, each label with a verbatim quote and the source step; validate locally with `python tests/benchmark/run_benchmark.py` before submitting.
+Submit per the Benchmark Curation Assignment: JSONL records matching `tests/benchmark/benchmark_schema.json`, each label with a verbatim quote and the source step; validate locally with `python tests/run_benchmark.py <your file>` before opening a PR.
