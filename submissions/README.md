@@ -43,6 +43,7 @@ One folder per student. Submit by **pull request** — never commit to `main` di
 - Quotes must be verbatim from the source page; no paraphrases.
 - When the metadata doesn't state a field, the honest label is the abstention
   state per the assignment — never a guess.
+- All deliverables use docs/STUDENT_RESPONSE_FORMS.md — commit labels before your first harness run.
 
 ## Folders
 

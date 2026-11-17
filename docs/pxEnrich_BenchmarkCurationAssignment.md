@@ -1,3 +1,17 @@
+> **📌 Addendum — 2026-11-17 (read this first)**
+> 1. **Commit before you compare.** Commit your labels to git *before* your
+>    first `run_benchmark.py` run. This protects the scientific independence
+>    of your labels — it's what makes them a publishable reference standard
+>    (with you as co-author). Full rules: `docs/STUDENT_RESPONSE_FORMS.md`.
+> 2. **Unknown labels:** when a field is decided by *absence* of evidence,
+>    set `"evidence_quote": null` and state in the rationale the deepest
+>    source step you searched (e.g., "searched through step 4, SDRF").
+> 3. **Agreement design:** this section's "partner" double-coding is replaced
+>    by the class design — everyone independently labels the 2 calibration
+>    accessions; adjudication happens as a group after agreement scores.
+> 4. All structured deliverables (log, bug reports, check-ins) use the forms
+>    in `docs/STUDENT_RESPONSE_FORMS.md`.
+
 # pxEnrich Benchmark Curation Assignment
 
 Oct 12, 2026 · @Kate
