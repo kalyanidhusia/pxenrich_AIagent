@@ -1,16 +1,29 @@
 > **📌 Addendum — 2026-11-17 (read this first)**
-> 1. **Commit before you compare.** Commit your labels to git *before* your
->    first `run_benchmark.py` run. This protects the scientific independence
->    of your labels — it's what makes them a publishable reference standard
->    (with you as co-author). Full rules: `docs/STUDENT_RESPONSE_FORMS.md`.
-> 2. **Unknown labels:** when a field is decided by *absence* of evidence,
->    set `"evidence_quote": null` and state in the rationale the deepest
->    source step you searched (e.g., "searched through step 4, SDRF").
-> 3. **Agreement design:** this section's "partner" double-coding is replaced
->    by the class design — everyone independently labels the 2 calibration
->    accessions; adjudication happens as a group after agreement scores.
-> 4. All structured deliverables (log, bug reports, check-ins) use the forms
->    in `docs/STUDENT_RESPONSE_FORMS.md`.
+>
+> 1. **Commit before you compare.** Complete your labels, commit them to git, and push that commit **before** your first `run_benchmark.py` run. The pre-harness commit is the independent annotation used for agreement analysis. If you later revise a label after seeing engine output, preserve that change as a separate adjudication commit with the reason documented. Details: `docs/STUDENT_RESPONSE_FORMS.md`.
+>
+> 2. **Use the uncertainty states precisely.**
+>    - `unknown` = no relevant evidence was found after completing the available source search.
+>    - `abstained` = relevant evidence exists, but it is incomplete, borderline, or insufficient for a hard label.
+>    - `mixed` = multiple valid values coexist in the same cohort or pooled sample.
+>    - `conflicting` = mutually exclusive claims refer to the **same entity, same property, and same biological/temporal scope**.
+>    - `not_evaluable` = the field does not apply.
+>
+>    For `unknown`, set `"evidence_quote": null` and state the deepest source step searched in the rationale. For `conflicting`, quote both sources.
+>
+> 3. **Agreement design:** ignore the older "partner" double-coding instructions below. All 7 annotators independently label the same **2 calibration accessions**; the remaining assigned accessions are unique. Agreement statistics are calculated from the **pre-harness calibration labels**, and disagreements are adjudicated as a group afterward.
+>
+> 4. **Use the locked biology rules in the primer.** In particular:
+>    - explicit ER− + PR− + HER2− in confirmed breast cancer may be deterministically labeled `subtype = TNBC`;
+>    - TNBC must not be converted to Basal-like;
+>    - HER2-positive must not be converted to HER2-enriched;
+>    - ER+/HER2− alone is insufficient to assign Luminal A vs Luminal B;
+>    - HER2 IHC 1+, or IHC 2+ with negative/non-amplified ISH/FISH, may be labeled HER2-low;
+>    - human biological origin + mouse host in a xenograft is compatible metadata, not automatically `conflicting`.
+>
+> 5. **Keep biological concepts separate.** `disease_context` describes the biological disease origin of the material, not the purpose of the study. `organism_context` should represent biological taxonomic origin. Sample/model terms such as cell line, PDX, xenograft, or organoid belong under sample/model metadata rather than being treated as organism labels. Do not silently let one source override another when same-scope claims disagree.
+>
+> 6. **Start with the training materials before formal curation.** Read `docs/BIOLOGY_PRIMER.md` (~60–70 min required track), then complete `docs/ANNOTATION_QUIZ.md`. All structured deliverables, check-ins, disagreement reports, and adjudication notes use the forms in `docs/STUDENT_RESPONSE_FORMS.md`.
 
 # pxEnrich Benchmark Curation Assignment
 
