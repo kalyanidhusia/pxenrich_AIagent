@@ -1,7 +1,5 @@
 # pxEnrich Annotation Mini-Quiz
 
-> **Working revision v3 — 2026-11-17.** Updated to match the resolved biology/metadata rules. One schema implementation issue remains before benchmark freeze: taxonomic origin, patient-derived status, host organism, and experimental model should not be collapsed into a single `organism_context` value.
-
 18 realistic labeling scenarios. Work through them **after** reading `BIOLOGY_PRIMER.md` and **before** (or early in) your unique-accession labeling. Each answer is hidden — commit to your own answer first, then click. Aim for 16/18; anything you miss, re-read that primer section.
 
 These are the *reasoning patterns* behind your six fields — the snippets are realistic but invented, so none of them leak answers to your assigned accessions.
@@ -23,7 +21,7 @@ These are the *reasoning patterns* behind your six fields — the snippets are r
 **Q3.** *"MCF-7 cells were cultured and treated with tamoxifen."* What are `organism_context`, `sample_type`, and `disease_context`?
 <details><summary>Answer</summary>
 
-`organism_context` = **Homo sapiens**; `sample_type` = **cell line**; `disease_context` = **breast carcinoma** (assuming the MCF-7 identity is established in the evidence trail). Biological origin, model type, and study purpose are separate concepts.
+`organism_context` = **asserted: the cell line's name (MCF-7)** — in the current schema this field answers "patient-derived, cell line, animal model, mixed, or non-disease system?", and a named human cell line is labeled by its name; `sample_type` = **cell line**; `disease_context` = **breast cancer** (MCF-7 is a breast-cancer line). "Human" alone is not the answer: **Homo sapiens does not mean patient-derived.**
 </details>
 
 **Q4.** The title says *"Proteomic analysis of ER+ breast tumors (n=32)."* What is `er_status`, and what's your evidence?
@@ -47,7 +45,7 @@ You may deterministically assign **`subtype = TNBC`** because triple-negative br
 **Q7.** The species field says *Homo sapiens*; the description says *"BT-474 xenograft tumors grown in NSG mice."* Is this a conflict?
 <details><summary>Answer</summary>
 
-**No.** These are orthogonal attributes. Biological origin = **Homo sapiens**; host = **Mus musculus**; model = **cell-line-derived xenograft (CDX)**; physical material = **tumor tissue**. Human origin + mouse host is a valid composite system. It becomes `conflicting` only if two sources make mutually exclusive claims about the same property at the same sample/timepoint.
+**No.** Human-origin material in a mouse host is one compatible system, not a contradiction. In the current schema: `organism_context` = **mixed ("human and animal")**, `sample_type` = **xenograft (CDX)**, with the human-origin/mouse-host picture spelled out in the rationale. It becomes `conflicting` only if two sources make mutually exclusive claims about the same property at the same sample/timepoint.
 </details>
 
 **Q8.** The publication's Table 1 lists per-patient receptor status; the repository page says nothing about receptors. Your deepest source step and what goes in `source_step`?
@@ -59,7 +57,7 @@ Step **5** (linked publication) — and recording that honestly matters: it tell
 **Q9.** *"Plasma samples from 40 breast cancer patients and 20 healthy controls."* What can you assign to `sample_type` and `organism_context`?
 <details><summary>Answer</summary>
 
-`sample_type` = **plasma**; `organism_context` = **Homo sapiens**. “Patient-derived” is useful provenance/context but should not be encoded as the taxonomic organism value. The cancer/healthy cohort composition belongs in `disease_context`/rationale at the appropriate scope.
+`sample_type` = **plasma**; `organism_context` = **asserted: patient-derived** — directly collected human patient material is exactly what that value means in the current schema. The cancer/healthy cohort composition belongs in `disease_context`/rationale at the appropriate scope.
 </details>
 
 **Q10.** You searched ProteomeCentral, the PRIDE page, the API, and the SDRF; nothing states HER2 status; there is no linked publication. `her2_status`?
@@ -102,7 +100,7 @@ Step **5** (linked publication) — and recording that honestly matters: it tell
 **Q16.** A PDX proteomics sample is described as "human breast tumor tissue propagated in mice." Can `sample_type` contain more than one compatible concept?
 <details><summary>Answer</summary>
 
-**Yes.** The physical material is **tumor tissue** and the experimental model is **PDX/xenograft**. These are compatible dimensions. Prefer separate orthogonal fields; if the schema supports a multi-label `sample_type`, preserve both rather than flattening the biology.
+**Both concepts are true** — the material is tumor tissue *and* the model is a PDX — but the current `sample_type` field takes one value: **use the most specific model term the source states (`PDX`)**, and record the broader picture ("human tumor tissue, mouse host") in the rationale. Flattening toward the *most* specific term preserves the most information.
 </details>
 
 **Q17.** A record says only "tumor tissue" with no statement about how it was obtained. Can you infer that it is patient-derived?
@@ -114,9 +112,9 @@ Step **5** (linked publication) — and recording that honestly matters: it tell
 **Q18.** A breast-cancer organoid dataset lists `organism = Homo sapiens`. Where does "organoid" belong?
 <details><summary>Answer</summary>
 
-`organism_context` = **Homo sapiens**. **Organoid belongs under `sample_type` / experimental-model metadata**, not under the taxonomic organism field.
+**"Organoid" belongs in `sample_type`** — it describes the experimental model/material. For `organism_context`, ask the field's own question (patient-derived / cell line / animal model / mixed?): a patient-tumor-derived organoid is patient-derived material grown in the lab — say exactly that in the rationale, and label the most honest value the evidence supports (`patient-derived` when the patient origin is stated; `unknown` when it isn't).
 </details>
 
 ---
 
-*Answer pattern summary: (1) Label what the source states, at the scope it states it. (2) Use only explicitly locked deterministic mappings. (3) Keep taxon, host, material, model, disease origin, and study intent as separate concepts. (4) Use `unknown`, `mixed`, `conflicting`, and `abstained` deliberately rather than interchangeably. (5) Never let one source silently override another when they make same-scope contradictory claims.*
+*Answer pattern summary: (1) Label what the source states, at the scope it states it. (2) Use only the locked deterministic mappings on the rules card. (3) Keep disease origin, material/model, and study intent as separate concepts — and answer each field's own question in the current schema's vocabulary. (4) Use `unknown`, `mixed`, `conflicting`, and `abstained` deliberately rather than interchangeably. (5) Never let one source silently override another when they make same-scope contradictory claims.*
